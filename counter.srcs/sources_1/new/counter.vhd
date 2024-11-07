@@ -40,7 +40,7 @@ architecture Behavioral of counter is
     signal button_last : STD_LOGIC := '0';
     signal debounced_button : STD_LOGIC := '0';
     signal debounce_counter : INTEGER := 0;
-    constant debounce_limit : INTEGER := 1000000; -- Adjust as needed for debounce time
+    constant debounce_limit : INTEGER := 1000000; 
 
 begin
     process(CLK100MHZ, reset)
