@@ -74,13 +74,14 @@ uut: entity work.counter
 
         -- Simulate button press
         button <= '1';
-        wait for 20 ns;
+        wait for 9 ns;
         button <= '0';
         wait for 100 ns;
 
+        
         -- Simulate another button press
         button <= '1';
-        wait for 20 ns;
+        wait for 30 ns;
         button <= '0';
         wait for 100 ns;
 

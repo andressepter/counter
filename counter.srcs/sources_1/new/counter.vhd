@@ -40,37 +40,52 @@ architecture Behavioral of counter is
     signal button_last : STD_LOGIC := '0';
     signal debounced_button : STD_LOGIC := '0';
     signal debounce_counter : INTEGER := 0;
-    constant debounce_limit : INTEGER := 1000000; 
+    constant debounce_limit : INTEGER := 1000000; -- 10 ms
 
 begin
     process(CLK100MHZ, reset)
     begin
+--        if reset = '1' then
+--            count <= (others => '0');
+--            button_reg <= '0';
+--            button_last <= '0';
+--            debounced_button <= '0';
+--          debounce_counter <= 0;
+--      elsif rising_edge(CLK100MHZ) then
+--          button_last <= button_reg;
+--          button_reg <= button;
+--
+--          -- Debounce logic
+--         if button_reg = button_last then
+--              if debounce_counter < debounce_limit then
+--                  debounce_counter <= debounce_counter + 1;
+--              else
+--                  debounced_button <= button_reg;
+--              end if;
+--          else
+--              debounce_counter <= 0;
+--         end if;
+
+            -- Increment counter on debounced button press
+--          if debounced_button = '1' and button_last = '0' then
+--              count <= count + 1;
+--          end if;
+--      end if;
+
+-- lets try without debounce
         if reset = '1' then
             count <= (others => '0');
             button_reg <= '0';
             button_last <= '0';
-            debounced_button <= '0';
-            debounce_counter <= 0;
         elsif rising_edge(CLK100MHZ) then
             button_last <= button_reg;
             button_reg <= button;
 
-            -- Debounce logic
-            if button_reg = button_last then
-                if debounce_counter < debounce_limit then
-                    debounce_counter <= debounce_counter + 1;
-                else
-                    debounced_button <= button_reg;
-                end if;
-            else
-                debounce_counter <= 0;
-            end if;
-
-            -- Increment counter on debounced button press
-            if debounced_button = '1' and button_last = '0' then
+            if button_last = '0' and button_reg = '1' then
                 count <= count + 1;
             end if;
         end if;
+
     end process;
 
     leds <= count;
