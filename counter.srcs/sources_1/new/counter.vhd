@@ -45,34 +45,7 @@ architecture Behavioral of counter is
 begin
     process(CLK100MHZ, reset)
     begin
---        if reset = '1' then
---            count <= (others => '0');
---            button_reg <= '0';
---            button_last <= '0';
---            debounced_button <= '0';
---          debounce_counter <= 0;
---      elsif rising_edge(CLK100MHZ) then
---          button_last <= button_reg;
---          button_reg <= button;
---
---          -- Debounce logic
---         if button_reg = button_last then
---              if debounce_counter < debounce_limit then
---                  debounce_counter <= debounce_counter + 1;
---              else
---                  debounced_button <= button_reg;
---              end if;
---          else
---              debounce_counter <= 0;
---         end if;
 
-            -- Increment counter on debounced button press
---          if debounced_button = '1' and button_last = '0' then
---              count <= count + 1;
---          end if;
---      end if;
-
--- lets try without debounce
         if reset = '1' then
             count <= (others => '0');
             button_reg <= '0';
